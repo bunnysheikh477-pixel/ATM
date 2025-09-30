@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ATM.css') }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meezanbank.com</title>
+
+</head>
+
+
+
+
+<body>
+  <section>
+    <h3>Current Balance: {{ balance }}</h3>
+    {% if message %}
+        <p style="color:white;"><b>{{ message }}</b></p>
+    {% endif %}
+  </section>
+    <header>
+        <h1>MEEZAN BANK</h1> 
+        <div>PLease select only one option!</div>
+      <nav>
+                     
+          <h2>Withdraw Money</h2>
+         
+         <div class="card">
+            <form action="/withdraw" method="POST">
+              <input type="number" name="amount" placeholder="Enter amount" required>
+              <br>
+              <input type="number" placeholder="Phone number">
+              <br>
+              <input type="Password" placeholder="Password">
+              <br>
+              <button class="withdraw-btn">Withdraw</button>
+            </form>
+            
+          </div>
+          
+          
+            <hr>
+         
+            <h2>Deposite</h2>
+         
+
+         <div class="card">
+          <form action="/deposite" method="POST">
+              <input type="number" name="amount" placeholder="Enter amount" required>
+              <br>
+              <input type="number" placeholder="Phone number">
+              <br>
+              <input type="Password" placeholder="Password">
+              <br>
+              <button class="deposite-btn">Deposite</button>
+            </form>
+            
+          </div>
+         
+            <hr>
+            <h2>Transfer Cash</h2>
+
+         <div class="card">
+          <form action="/transfer" method="POST">
+              <input type="number"  name="amount" placeholder="Enter amount" required>
+              <br>
+              <input type="number" placeholder="Phone number">
+              <br>
+              <input type="Password" placeholder="Password">
+              <br>
+              <button class="transfer-btn">Transfer</button>
+            </form>
+          </div>
+            <hr>
+
+
+
+            <h2>Funds Donation</h2>
+         <div class="card">
+            <form action="/funds" method="POST">
+              <input type="number" name="amount"  placeholder="Enter amount" required>
+              <br>
+              <input type="number" placeholder="Phone number">
+              <br>
+              <input type="Company" placeholder="Company">
+              <br>
+              <input type="Password" placeholder="Password">
+              <br>
+              <button class="donate-btn">Donate</button>
+            </form>  
+          </div>
+         
+
+            <hr>
+              <form action="/exit" method="POST"> 
+                <button onclick="window.location.href='/exit'" class="exit-btn">Exiting</button>
+                 
+
+             
+              </form>
+         
+            <hr>
+        </nav> 
+    </header>
+
+   
+      <section>
+        <form>
+            <button onclick="openPopup()"
+            style="padding:12px 25px; font-size:25px;border-radius:20px; background:yellow;cursor:pointer;">        
+                 <a href="ATM HOME.html">Return to Home page</a>
+                    </button>
+            </form>
+            
+      </section>  
+      
+
+      
+  <script>
+    // 1. Fetch balance from backend API
+    fetch("/api/balance/abu")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("Total_B").innerText = "balance  . " + data.balance;
+      });
+
+    // 2. Example: Update HTML content dynamically
+    setTimeout(() => {
+      document.getElementById("Total_B").style.color = "none";
+      document.getElementById("Total_B").style.fontWeight = "bold";
+    }, 2000); // changes after 2 seconds
+  </script>
+</body>
+
+</html>
