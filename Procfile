@@ -1,1 +1,1 @@
-web: gunicorn ATM:py
+web: gunicorn --workers 2 ATM:app
