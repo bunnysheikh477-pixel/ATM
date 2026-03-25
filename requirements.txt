@@ -2,3 +2,4 @@ Flask==2.3.2
 requests
 flask_sqlalchemy
 flask_login
+gunicorn

@@ -1,1 +1,1 @@
-web: python ATM.py
+web: gunicorn ATM:py
